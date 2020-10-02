@@ -63,6 +63,120 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Second request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "93d21a59-395a-44b8-9a2b-b1e71b76c3f0",
+						"exec": [
+							"pm.test(\"Connection alive\", function () {\r",
+							"    pm.response.to.be.header(\"Connection\",\"keep-alive\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.vk.com/method/groups.get?user_id=60893757&extended=1&filter=publics&v=5.52&access_token=879e11c91b6d40019043c80488bc6a69e7734ebefb6450b9dded4ad3c197e96a6d9a60bad12d59fa6d6f9",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"groups.get"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "60893757"
+						},
+						{
+							"key": "extended",
+							"value": "1"
+						},
+						{
+							"key": "filter",
+							"value": "publics"
+						},
+						{
+							"key": "v",
+							"value": "5.52"
+						},
+						{
+							"key": "access_token",
+							"value": "879e11c91b6d40019043c80488bc6a69e7734ebefb6450b9dded4ad3c197e96a6d9a60bad12d59fa6d6f9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Third request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff81433c-d133-441a-8e1d-7ec5930d1e39",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.vk.com/method/groups.get?user_id=60893757&extended=1&filter=publics&v=5.52&access_token=879e11c91b6d40019043c80488bc6a69e7734ebefb6450b9dded4ad3c197e96a6d9a60bad12d59fa6d6f9",
+					"protocol": "https",
+					"host": [
+						"api",
+						"vk",
+						"com"
+					],
+					"path": [
+						"method",
+						"groups.get"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "60893757"
+						},
+						{
+							"key": "extended",
+							"value": "1"
+						},
+						{
+							"key": "filter",
+							"value": "publics"
+						},
+						{
+							"key": "v",
+							"value": "5.52"
+						},
+						{
+							"key": "access_token",
+							"value": "879e11c91b6d40019043c80488bc6a69e7734ebefb6450b9dded4ad3c197e96a6d9a60bad12d59fa6d6f9"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
