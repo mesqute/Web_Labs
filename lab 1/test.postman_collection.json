@@ -7,23 +7,58 @@
 	"item": [
 		{
 			"name": "First request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80898acb-ae1f-4e9a-906f-3d88dbbef333",
+						"exec": [
+							"pm.test(\"Verification of the subscription to the group Pikabu\", function() {\r",
+							"var jsonData = JSON.parse(responseBody); \r",
+							"pm.expect(jsonData.response.items[2].id).to.eql(31480508);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"auth": {
-					"type": "apikey"
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"raw": "https://api.vk.com/method/groups.get?user_id=60893757&extended=1&filter=publics&v=5.52&access_token=879e11c91b6d40019043c80488bc6a69e7734ebefb6450b9dded4ad3c197e96a6d9a60bad12d59fa6d6f9",
 					"protocol": "https",
 					"host": [
-						"jsonplaceholder",
-						"typicode",
+						"api",
+						"vk",
 						"com"
 					],
 					"path": [
-						"posts",
-						"1"
+						"method",
+						"groups.get"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "60893757"
+						},
+						{
+							"key": "extended",
+							"value": "1"
+						},
+						{
+							"key": "filter",
+							"value": "publics"
+						},
+						{
+							"key": "v",
+							"value": "5.52"
+						},
+						{
+							"key": "access_token",
+							"value": "879e11c91b6d40019043c80488bc6a69e7734ebefb6450b9dded4ad3c197e96a6d9a60bad12d59fa6d6f9"
+						}
 					]
 				}
 			},
