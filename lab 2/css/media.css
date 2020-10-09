@@ -6,7 +6,7 @@
         z-index: 999;
         top: 0;
     }
-    .header .container {
+    .header .header-container {
         max-width: 90%;
         margin: 0 auto;
     }
@@ -16,5 +16,17 @@
     .col-header-l {
         width: auto;
         height: 50px;
+    }
+    .space {
+        padding: 45px;
+    }
+    .container {
+        width: 1400px;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 1450px) and (min-width: 801px) {
+    .container {
+        width: 1000px;
     }
 }
