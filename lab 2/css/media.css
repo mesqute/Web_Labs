@@ -1,0 +1,20 @@
+@media (min-width: 801px){
+    .header {
+        background-color: khaki;
+        width: 100%;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+    }
+    .header .container {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    .header-row {
+        padding: 20px 0;
+    }
+    .col-header-l {
+        width: auto;
+        height: 50px;
+    }
+}
