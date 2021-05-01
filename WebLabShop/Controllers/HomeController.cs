@@ -69,7 +69,9 @@ namespace WebLabShop.Controllers
             List<OrderedProduct> orderedProducts = _httpContextAccessor.HttpContext.Session.Get<List<OrderedProduct>>("list") != null ? _httpContextAccessor.HttpContext.Session.Get<List<OrderedProduct>>("list") : new List<OrderedProduct>();
             orderedProducts.Add(new OrderedProduct { ProductId = id, Count = 1 });
             int basketCount = orderedProducts.Count;
-
+            List<int> toBasketLinkList = _httpContextAccessor.HttpContext.Session.Get<List<int>>("toBasketLink") != null ? _httpContextAccessor.HttpContext.Session.Get<List<int>>("toBasketLink") : new List<int>();
+            toBasketLinkList.Add(id);
+            _httpContextAccessor.HttpContext.Session.Set<List<int>>("toBasketLink", toBasketLinkList);
             long totalPrice = 0;
             foreach (OrderedProduct ordered in orderedProducts)
             {

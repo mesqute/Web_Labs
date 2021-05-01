@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Product>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
 @foreach (Product product in Model)
 {
@@ -10,8 +12,18 @@
                 <p class="card-text">Бренд: @product.Brand.Name</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <small class="text-muted">Цена: @product.Price Р</small>
-                    <button type="button" class="btn btn-sm btn-outline-secondary btn-basket" data-id="@product.Id">В корзину</button>
-                    <a href="/home/basket" class="btn btn-sm btn-outline-success d-none">В корзине</a>
+                    @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("toBasketLink") != null && HttpContextAccessor.HttpContext.Session.Get<List<int>>("toBasketLink").Contains(product.Id) ) 
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-secondary btn-basket d-none" data-id="@product.Id">В корзину</button>
+                        <a href="/home/basket" class="btn btn-sm btn-outline-success">В корзине</a>
+
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-secondary btn-basket" data-id="@product.Id">В корзину</button>
+                        <a href="/home/basket" class="btn btn-sm btn-outline-success d-none">В корзине</a>
+
+                    }
 
                 </div>
             </div>
