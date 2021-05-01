@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Order>
+
+<div class="py-3">
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Номер заказа
+                    </th>
+                    <th>
+                        Город
+                    </th>
+                    <th>
+                        Дата\Время
+                    </th>
+                    <th>
+                        Товары
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach (Order order in Model)
+                {
+                    <tr>
+                        <td>
+                            @order.Id
+                        </td>
+                        <td>
+                            @order.City
+                        </td>
+                        <td>
+                            @order.Date
+                        </td>
+                        <td>
+                           @foreach (OrderedProduct ordered in order.OrderedProducts)
+                            {
+                                <div class="row">
+                                    <div class="col-11">
+                                        @ordered.Product.Brand.Name @ordered.Product.Name
+                                    </div>
+                                    <div class="col-1">
+                                        @ordered.Count
+                                    </div>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
