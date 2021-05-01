@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="py-5 text-center container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1>Только лучшие носки</h1>
+            <p class="lead">Только по самым лучшим ценам!</p>
+        </div>
+    </div>
+</section>
+<div class="py-3">
+    <div class="container">
+        <div class="py-3">
+            <div class="card py-1 container">
+                <div class="d-flex">
+                    <div class="dropdown">
+                        <button class="btn btn-sm dropdown-toggle btn-outline-secondary px-4 mb-0 mx-1" id="sortbtn" type="button" data-toggle="dropdown" data-target="#sort" aria-haspopup="true" aria-expanded="false"> Цена </button>
+                        <div class="dropdown-menu" aria-labelledby="sortbtn">
+                            <input type="button" class="dropdown-item btn-sort" value="По возрастанию" />
+                            <input type="button" class="dropdown-item btn-sort" value="По убыванию" />
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-sm dropdown-toggle btn-outline-secondary px-4 mb-0 mx-1" id="filterbtn" type="button" data-toggle="dropdown" data-target="#filter" aria-haspopup="true" aria-expanded="false">Бренд</button>
+                        <div class="dropdown-menu" aria-labelledby="filterbtn">
+                            @foreach (Brands brands in ViewBag.BrandList)
+                            {
+                                <input type="button" class="dropdown-item btn-filter" value="@brands.Name" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="products">
+            @await Html.PartialAsync("_Products", Model)
+        </div>
+    </div>
+</div>
+

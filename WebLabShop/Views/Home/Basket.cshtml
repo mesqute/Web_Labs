@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebLabShop.Models.OrderedProduct>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Basket Page";
+}
+
+@await Html.PartialAsync("_ModalFinishOrder")
+
+<section class="py-5">
+    <div class="container" style="max-height: 80%;">
+        @if (Model != null)
+        {
+            <ul class="list-unstyled overflow-auto">
+                @foreach (OrderedProduct ordered in Model)
+                {
+                    <li class="card mb-3">
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
+                                <img src="@ordered.Product.Image" style="max-width: 200px;" class="rounded mx-auto d-block" alt="...">
+                            </div>
+                            <div class="col-md-10">
+                                <button type="button" class="close mx-1" aria-label="Закрыть">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="card-body mt-5">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <p class="card-text">@ordered.Product.Name </p>
+                                            <p class="card-text">Бренд: @ordered.Product.Brand.Name</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="row mt-2">
+                                                <button class="btn col btn-minus" data-id="@ordered.ProductId">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                </button>
+                                                <p class="col m-0 p-2">1</p>
+                                                <button class="btn col btn-plus" data-id="@ordered.ProductId">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="mt-3 price">
+                                                @ordered.Product.Price P
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="flex-column bg-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-9">
+                            <p class="text-left p-2 m-2">Итого к оплате: <span id="totalPrice">@HttpContextAccessor.HttpContext.Session.GetString("totalPrice")</span> Р</p>
+                        </div>
+                        <div class="col col-3 text-right">
+                            <button type="button" class="btn btn-primary m-2" id="finishOrdersButton" data-toggle="modal" data-target="#finishOrder">Отправить заказ</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <section class="py-5 text-center container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <p class="lead">Корзина пуста!</p>
+                    </div>
+                </div>
+            </section>
+        }
+    </div>
+</section>
+

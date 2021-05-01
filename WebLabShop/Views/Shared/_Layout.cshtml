@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="icon" href="https://img.icons8.com/ios/452/socks.png">
+    <script src="https://kit.fontawesome.com/7654366995.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    @await Html.PartialAsync("_Modal")
+
+    <header class="navbar flex-column bg-dark text-white fixed-top">
+        <div class="container">
+            <div class="navbar-brand align-items-center">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none mr-md-auto">
+                    <svg class="bi me-2" width="40" height="32">
+                        <img width="40" height="32" src="https://www.pngkit.com/png/full/82-823777_small-bear-socks-kid-sock.png" alt="">
+                    </svg>
+                    <div class="col-12 col-lg-auto text-white ml-2">
+                        <h3 class="font-monospace">Носковая</h3>
+                    </div>
+                </a>
+            </div>
+            <!-- Button trigger modal -->
+            <input type="button" class="btn btn-secondary" data-toggle="modal" data-target="#staticBackdrop" id="citiesMenu" value="Город">
+            <div class="text-end">
+                <a href="home/basket" class="btn btn-warning">
+                    Корзина <span class="badge badge-light" id="basketCount">@HttpContextAccessor.HttpContext.Session.GetString("basketCount")</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <section class="container py-4"> вы не должны быть здесь </section>
+    <main class="bg-light">
+        @RenderBody()
+    </main>
+    <footer class="py-5 container text-center">
+        <p>Данный правообадатель обладает данными ему правами.</p>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
